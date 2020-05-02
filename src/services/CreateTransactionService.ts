@@ -34,7 +34,7 @@ class CreateTransactionService {
       where: { title: category },
     });
 
-    if (!transactionCategory) {
+    if (!transactionCategory && category) {
       transactionCategory = categoryRepository.create({
         title: category,
       });
