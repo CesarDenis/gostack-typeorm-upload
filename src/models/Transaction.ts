@@ -8,6 +8,8 @@ import {
   JoinColumn,
 } from 'typeorm';
 
+import ColumnNumericTransformer from '../utils/columnNumericTransformer';
+
 import Category from './Category';
 
 @Entity('transactions')
@@ -23,7 +25,11 @@ class Transaction {
   })
   type: 'income' | 'outcome';
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column('decimal', {
+    precision: 10,
+    scale: 2,
+    transformer: new ColumnNumericTransformer(),
+  })
   value: number;
 
   @Column()
